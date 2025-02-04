@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        .result-container {
+            width: 50%;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .tumor {
+            color: red;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .no-tumor {
+            color: #01ff01;;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #ff5733;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-btn:hover {
+            background: #c70039;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Prediction Result</h1>
+        {% if prediction == "Tumor" %}
+            <p class="tumor">Tumor Detected</p>
+            <img src="{{ url_for('static', filename='images/unhealthy.png') }}" alt="Tumor Image">
+        {% else %}
+            <p class="no-tumor">No Tumor</p>
+            <img src="{{ url_for('static', filename='images/healthy.png') }}" alt="No Tumor Image">
+        {% endif %}
+        <br>
+        <a href="/" class="back-btn">Go Back</a>
+    </div>
+</body>
+</html>
