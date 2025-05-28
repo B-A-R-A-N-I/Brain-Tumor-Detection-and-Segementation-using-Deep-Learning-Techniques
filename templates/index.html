@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Spinner style (optional: move this to style.css) */
+        .spinner-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            display: none;
+        }
+
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid cyan;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Brain Tumor Detection</h1>
+        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data" onsubmit="showSpinner()">
+            <label for="file-upload" class="custom-file-upload">Choose an MRI Image</label>
+            <input id="file-upload" type="file" name="file" required>
+            <button type="submit">Analyze</button>
+        </form>
+    </div>
+
+    <!-- Spinner Overlay -->
+    <div id="spinner" class="spinner-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script>
+        function showSpinner() {
+            document.getElementById("spinner").style.display = "flex";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brain Tumor Detection Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a192f;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 20px;
+            color: #00bcd4;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .image-box {
+            background: #112240;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+            max-width: 545px;
+        }
+        .image-box img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .image-box p {
+            font-size: 14px;
+            margin-top: 15px;
+            color: #64ffda;
+        }
+        .feature-img {
+            height: 190px;
+            width: 100%;
+            margin-top: 80px;
+        }
+        .btn {
+            background-color: #00bcd4;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #008ba3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Brain Tumor Detection Result</h1>
+    <h2>Prediction: {{ prediction }}</h2>
+
+    <div class="container">
+        <div class="image-box">
+            <img src="{{ url_for('static', filename='processed/' + img1) }}" alt="Original Image" />
+            <p>1. Original Image</p>
+        </div>
+        <div class="image-box">
+            <img src="{{ url_for('static', filename='processed/' + img2) }}" alt="Grayscale Image" />
+            <p>2. Convert to Grayscale</p>
+        </div>
+        <div class="image-box">
+            <img src="{{ url_for('static', filename='processed/' + img3) }}" alt="Color Mapped Image" />
+            <p>3. Apply Color Map</p>
+        </div>
+        <div class="image-box">
+            <img src="{{ url_for('static', filename='processed/' + img4) }}" alt="Preprocessed Image" />
+            <p>4. Preprocessed Image</p>
+        </div>
+        <div class="image-box">
+            <img src="{{ url_for('static', filename='processed/' + img5) }}" class="feature-img" alt="Feature Extracted Image" />
+            <p>5. Feature Extraction</p>
+        </div>
+        <div class="image-box">
+            <img src="{{ url_for('static', filename='processed/' + img6) }}" alt="Tumor Detected" />
+            <p>6. Predicted Result</p>
+        </div>
+
+        {% if prediction != "No Tumor" %}
+        {% if img7 != "None" %}
+        <div class="image-box">
+            <img src="{{ url_for('static', filename='processed/' + img7) }}" alt="Tumor Mask" />
+            <p>7. Tumor Segmented (Mask Only)</p>
+        </div>
+        {% endif %}
+
+        {% if img8 != "None" %}
+        <div class="image-box">
+            <img src="{{ url_for('static', filename='processed/' + img8) }}" alt="Final Processed Image" />
+            <p>8. Final Processed Image</p>
+        </div>
+        {% endif %}
+        {% endif %}
+
+    </div>
+
+    <a href="/" class="btn">Upload Another Image</a>
+
+</body>
+</html>
