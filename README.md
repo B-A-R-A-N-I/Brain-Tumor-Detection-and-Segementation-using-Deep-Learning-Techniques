@@ -14,7 +14,7 @@ This project presents an AI-based system for the automated detection and segment
 ### Feature Extraction & Classification:
 - scikit-learn – SVM model, feature scaling, accuracy metrics, train-test split
 
-### For Segmentation (Deep Learning):
+### Segmentation (Deep Learning):
 - tensorflow / keras – U-Net architecture implementation, training, and evaluation
 - PIL – Image handling during preprocessing or augmentation
 
